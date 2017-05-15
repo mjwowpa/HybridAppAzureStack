@@ -1,0 +1,14 @@
+{
+  "name": "hybrid-app-azure-stack",
+  "version": "0.0.0",
+  "description": "HybridAppAzureStack",
+  "main": "app.js",
+  "author": {
+    "name": "t-paarri"
+  },
+  "dependencies": {
+    "express": "3.4.4",
+    "jade": "*",
+    "stylus": "*"
+  }
+}
