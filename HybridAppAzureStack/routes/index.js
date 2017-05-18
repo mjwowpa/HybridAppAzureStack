@@ -8,9 +8,9 @@ exports.index = function (req, res) {
 };
 
 exports.about = function (req, res) {
-    res.render('about', { title: 'About', year: new Date().getFullYear(), message: 'Your application description page' });
+    res.render('about', { title: 'Billing', year: new Date().getFullYear(), message: 'Gestion Facturation' });
 };
 
 exports.contact = function (req, res) {
-    res.render('contact', { title: 'Contact', year: new Date().getFullYear(), message: 'Your contact page' });
+    res.render('contact', { title: 'SAV', year: new Date().getFullYear(), message: 'Gestion SAV' });
 };
