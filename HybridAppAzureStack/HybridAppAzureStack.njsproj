@@ -63,7 +63,9 @@
     <Content Include="typings.json" />
     <Content Include="views\contact.jade" />
     <Content Include="views\about.jade" />
+    <Content Include="views\poc.jade" />
     <Content Include="views\index.jade" />
+    <Content Include="views\exp.jade" />
     <Content Include="views\layout.jade" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config" />

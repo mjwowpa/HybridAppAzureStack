@@ -1,0 +1,27 @@
+﻿extends layout
+//script(src='/js/app.js')
+block content
+  h2 Prototype
+  h3 SDK Implementation
+  h3 #{val}
+  a.btn.btn-default Check Order &raquo;
+  h2 Second Proto
+  //h3 #{proto}
+  - console.log("in jade value is:");
+  - console.log(val);
+
+  address
+    | One Microsoft Way
+    br
+    | Issy-Les-Moulineaux, France
+    br
+    abbr(title='Phone') P: 
+    | 425.555.0100
+
+  address
+    strong Support: 
+    a(href='mailto:Support@contonso369.com') Support@spree.com
+    br
+    strong Marketing: 
+    a(href='mailto:Marketing@contonso369.com') Marketing@spree.com
+
