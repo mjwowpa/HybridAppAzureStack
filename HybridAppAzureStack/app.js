@@ -30,38 +30,95 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
+app.get('/destroy/:id', function (req, res, next) {
+    var id = req.params.id;
+    console.log("Removing: " + id);
+    for (var i = ordered.length - 1; i >= 0; i--) {
+        if (ordered[i] == id) {
+            ordered.splice(i, 1);
+        }
+    }
+   // ordered.splice(id,1);
+    sendSMS(id);
+    console.log("Removing order");
+
+    res.redirect('/exp');
+});
 app.get('/exp', function (req, res, next) {
     seekID();
     //next();
-    res.render('exp', { title: 'Experimental',val, year: new Date().getFullYear(), message: 'Test SDK' });
+    res.render('exp', { title: 'Experimental', val, ordered, year: new Date().getFullYear(), message: 'Test SDK' });
 });
 app.get('/poc', function (req, res, next) {
     seekID();
     //next();
     res.render('poc', { title: 'Experimental', val, year: new Date().getFullYear(), message: 'Test SDK' });
 });
-var val = 'ms';
+var val = 'Initialisation, veuillez recharger la page';
+
+var ordered = [];
+
+/*destroy: function(req, res) {
+    var id = req.params.id;
+
+    Todo.findByIdAndRemove(id, function (err, todo) {
+        if (err) res.render('error', { error: 'Error deleting todo' });
+        res.redirect('/todos');
+    });
+},*/
 
 function seekID() {
     var accountName = 'rghybridcommercediag301';
     var accountKey = 'nrfAyZBvofsKtbooCbudwgEaxvk7onJuAMy9VlWzDYj1qTC5zcxEoN4Av/1J4ueAl2Sb+/NtA9ikQdc1NeiRUQ==';
+    //var retryOperations = new azure.ExponentialRetryPolicyFilter();
+    //OPTION 1
     var queueSvc = azure.createQueueService(accountName, accountKey);
-  //  console.log('now toto is coming');
+    //OPTION 2
+    //var queueSvc = azure.createQueueService(accountName, accountKey).withFilter(retryOperations);
+    console.log('trying to get messages...');
    // console.log(val);
-    queueSvc.peekMessages('testqueue', function (error, result, response) {
-        if (!error)
+    queueSvc.getMessages('testqueue', function (error, result, response) {
+        if (!error && result[0]!= undefined)
         {
+            console.log('No Error: Research...');
             // Message text is in messages[0].messageText
             console.log(result[0].messageText);
+            var message = result[0];
             val = result[0].messageText;
             console.log(val);
+            queueSvc.deleteMessage('testqueue', message.messageId, message.popReceipt, function (error, response) {
+                if (!error) {
+                    console.log("message deleted");
+                }
+            });
+            ordered.push(val);
         }
         else {
-            val = 'error';
+            val = 'No New Order';
             console.log("error listening or nothing");
         }
     });
-   // return val;
+}
+
+function sendSMS(id) {
+    var accountName = 'rghybridcommercediag301';
+    var accountKey = 'nrfAyZBvofsKtbooCbudwgEaxvk7onJuAMy9VlWzDYj1qTC5zcxEoN4Av/1J4ueAl2Sb+/NtA9ikQdc1NeiRUQ==';
+    //var retryOperations = new azure.ExponentialRetryPolicyFilter();
+    //Valid
+    //OPTION 1
+    var queueSvc = azure.createQueueService(accountName, accountKey);
+    //OPTION 2
+    //var queueSvc = azure.createQueueService(accountName, accountKey).withFilter(retryOperations);
+    console.log('trying to get messages...');
+    // console.log(val);
+    queueSvc.createMessage('tdestqueue',id, function (error, result, response) {
+        if (!error) {
+            console.log('SMS Sended');
+        }
+        else {
+            console.log("error sms");
+        }
+    });
 }
 
 http.createServer(app).listen(app.get('port'), function () {
