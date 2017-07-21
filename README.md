@@ -2,6 +2,8 @@
 
 This project is meant for use with **Azure Stack Development Kit**. Azure Stack Technical Preview 3 Refresh users can still adapt the repo with [TP3-Refresh](https://github.com/Azure/AzureStack-Tools/tree/TP3-Refresh).
 
+In this basic scenario, you'll be able to deploy a classic e-commerce solution on the Microsoft public Cloud: Azure and validate your orders on a private platform with Azure Stack.
+
 ## Prerequisites
 
 This repo is only dedicated for user who has an Azure Stack DK environnement (one-node) with the following solutions:
@@ -14,9 +16,9 @@ This repo is only dedicated for user who has an Azure Stack DK environnement (on
 
 You will find [here](https://docs.microsoft.com/en-us/azure/azure-stack/) the official guide of Azure Stack to enable your plateform correctly.
 
-## Deploy Project
+## Ressources
 
-Resources below are relative to the deployement for enabling this scenario:
+Resources below are relative to the deployement for enabling this hybrid scenario:
 
 ## [Azure Content]()
 PaaS:
@@ -35,11 +37,11 @@ On Azure:
 
 - Deploy an SpreeCommerce resource from the Azure Marketplace
 - Copy the Python Script on the bitnami console
-- Edit the value in the Python Script: #YourID #YourStorageID #YourTenant
+- Edit values in the Python Script: "account_name"; "account_key"; "queue_name" (Azure Storage Credentials from RG with SpreeCommerce)
 
 On Azure Stack:
 
-- Open solution with Visual Studio and deploy it on your environement
+- Open solution with Visual Studio and deploy it via FTP on your environement.
 
 ---
 _This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments._
