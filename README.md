@@ -6,8 +6,9 @@ This project is meant for use with **Azure Stack Development Kit**. Azure Stack 
 
 ### Aim
 
-This repo contains resources which allow you to create a visual demo of a basic scenario on Azure Stack.
-You'll be able to deploy a simple e-commerce solution on the Microsoft public Cloud and validate your orders on a private platform for Azure Stack with the same consistency of Azure.
+This repo contains resources which allow you to create quickly a visual demo of a basic scenario on Azure Stack.
+In this project, there is a simple e-commerce solution to deploy on the Microsoft public Cloud and a second solution to validate your orders on a private platform for Azure Stack with the same consistency of Azure.
+Last but not least, you will be able to demonstrate hybrid tricks with this scenario. 
 
 #### Why hybrid ?
 
@@ -34,7 +35,7 @@ After completed the deployment, you can :
 
 - Process a shutdown on Azure Stack of your private application.
 - Create an account on the e-commerce solution hosted on Azure.
-- Order an item while the admin-platform is offline as you want.
+- Order an item while the admin-platform is offline.
 - Reboot your privation logistic site on Azure Stack.
 - Go to your private platform of logistic.
 - Click on the "Refresh" button.
@@ -43,13 +44,13 @@ After completed the deployment, you can :
 ### How It Works ?
 
 As mentioned, there is two main resources:
-- An AppService hosted on Azure
-- An other AppService hosted on Azure Stack
+- An Application available from the Azure Marketplace: [SpreeCommerce](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.spree) // hosted on Azure
+- An AppService wrote in NodeJS // hosted on Azure Stack
 
-To enable connection between e-shop on Azure and your logistic platform on Azure Stack, we'll use a Microsoft Cloud feature: Azure SDK Storage.
-For each transaction made on your SpreeCommerce, there is an additional script which will use the SDK to send "message" on a Azure Queue.
-Last but not least, Azure Stack can connect synchronously on this Azure Queue and edit messages.
-With this capability available on Azure, you can connect the both platforms and begin to empower the hybrid potential of Azure Stack.
+To enable connection between e-shop on Azure and your logistic platform on Azure Stack, we'll use a Microsoft Cloud feature: Azure Storage.
+For each transaction made on your SpreeCommerce, there is an additional script (wrote in Python) which will use the SDK from Azure Storage to send "message" on a Azure Queue.
+Azure Stack can connect synchronously on this Azure Queue and read/edit messages.
+With this capability available on Azure, you can connect the both platforms and expose the hybrid potential of Azure Stack.
 
 ## Prerequisites
 
@@ -83,7 +84,7 @@ PaaS:
 ### On Azure:
 
 #### 1)Deploy an SpreeCommerce resource from the Azure Marketplace
-#### 2)Copy the Python Script on the bitnami console
+#### 2)Copy the [Python Script](Python) on the bitnami console
 #### 3)Edit values in the Python Script: "account_name"; "account_key"; "queue_name" (Azure Storage Credentials from RG with SpreeCommerce)
 
 ### On Azure Stack:
