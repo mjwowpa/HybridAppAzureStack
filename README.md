@@ -83,13 +83,19 @@ PaaS:
 
 ### On Azure:
 
-#### 1)Deploy an SpreeCommerce resource from the Azure Marketplace
-#### 2)Copy the [Python Script](Python) on the bitnami console
-#### 3)Edit values in the Python Script: "account_name"; "account_key"; "queue_name" (Azure Storage Credentials from RG with SpreeCommerce)
-
+#### 1)Deploy SpreeCommerce resource from the Azure Marketplace
+#### 2)[Find application credentials](https://docs.bitnami.com/azure/faq/#find_credentials) from SpreeCommerce
+#### 3)[Connect](https://docs.bitnami.com/azure/faq/#connecting-with-an-ssh-client) with a SSH Client to SpreeCommerce resource with your credentials
+#### 4)Copy the [Python Script](Python) on the bitnami console (C:/ Directory)
+#### 5)Edit values in the Python Script: "account_name"; "account_key"; "queue_name" (Azure Storage Credentials from RG with SpreeCommerce)
+#### 6)Launch the python script:
+```powershell
+python listening.py
+```
 ### On Azure Stack:
 
-#### 4)Open solution with Visual Studio and deploy it via FTP on your environment.
+#### 7)Open solution with Visual Studio and deploy it via FTP on your environment.
+#### 8)Edit values from main.js file with Visual Studio: "account_name"; "account_key"; "queue_name" (Azure Storage Credentials from RG with SpreeCommerce)
 
 ---
 _This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments._
